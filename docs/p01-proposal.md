@@ -55,7 +55,7 @@
 <hr>
 
 **The Dataset**:
-- The dataset comes with columns that can help us solve our research questions. For example, each row represents a self-report of a crash, with each column listing all possible information about the crash as given by the reporter (and some automatically generated). The datasets are split into ADS and ADAS, so it is easy to compare them both since they are separate with the same columns. 
+- The dataset comes with columns that can help us solve our research questions. For example, each row represents a self-report of a crash, with each column listing all possible information about the crash as given by the reporter (and some automatically generated). The datasets are split into ADS and ADAS, so it is easy to compare them both since they are separate with the same columns. One other dataset is included which is for reports that didn't list if the car had ADS or ADAS capabilities (but did have one of them). For more information about each feature, the NHTSA defined all 122 columns in this document found [here](https://static.nhtsa.gov/odi/ffdd/sgo-2021-01/SGO-2021-01_Data_Element_Definitions.pdf)
 
 | Dataset Filename | Number of Rows | Number of Columns |
 | --- | --- | --- |
@@ -92,6 +92,7 @@ _Deep learning for object detection and scene perception in self-driving cars: S
   - Mohn, Tanya. “Can A.I. All but End Car Crashes? the Potential Is There.” _The New York Times_, The New York Times, 19 Apr. 2022, https://www.nytimes.com/2022/04/19/technology/ai-road-car-safety.html. 
   - Nyholm, S., Smids, J. _The Ethics of Accident-Algorithms for Self-Driving Cars: an Applied Trolley Problem?_. Ethic Theory Moral Prac 19, 1275–1289 (2016). https://doi.org/10.1007/s10677-016-9745-2
   - Snoswell, Aaron J., et al. “When Self-Driving Cars Crash, Who's Responsible? Courts and Insurers Need to Know What's inside the 'Black Box'.” _The Conversation_, The Conversation, 15 Sept. 2022, https://theconversation.com/when-self-driving-cars-crash-whos-responsible-courts-and-insurers-need-to-know-whats-inside-the-black-box-180334. 
+  - _Standing General Order 2021-01 Incident Report_, NHTSA, 15 Oct. 2022, https://static.nhtsa.gov/odi/ffdd/sgo-2021-01/SGO-2021-01_Data_Element_Definitions.pdf. 
   - “Standing General Order on Crash Reporting.” _NHTSA_, 2022, https://www.nhtsa.gov/laws-regulations/standing-general-order-crash-reporting. 
   - “Summary Report: Standing General Order on Crash Reporting for ... - NHTSA.” _Summary Report: Standing General Order on Crash Reporting for Automated Driving Systems_, June 2022, https://www.nhtsa.gov/sites/nhtsa.gov/files/2022-06/ADS-SGO-Report-June-2022.pdf. 
 <hr>
