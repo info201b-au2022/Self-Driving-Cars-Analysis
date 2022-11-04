@@ -12,7 +12,7 @@
 - **ADS**: Not available for consumer purchase, but it is being tested on public roads by automaker companies. 
 <hr>
 
-**Keywords**: Automated Vehicle Crashes, ADS, ADAS
+**Keywords**: Automated Vehicle Crashes, Posthumanism, Technology
 <hr>
 
 **Introduction**: Autonomous vehicles (self-driving vehicles) are capable of navigating from a destination to another without human input or assistance. By using a variety of technologies, vehicles are able to interpret sensory information, identifying paths, signs, beings, and other objects. However, we found out that there are more than 100 automakers and automated vehicle tech companies who report serious crashes; therefore, some regulations may be needed. The countrywide accident dataset shows the crashes of ADS and ADAS-equipped vehicles and how it results in property damage and injury. In our project, we will figure out and examine the dataset and visualization about the main factors that affect the crashes such as weather, brand, geography and so on. 
