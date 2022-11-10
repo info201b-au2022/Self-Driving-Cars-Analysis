@@ -20,48 +20,51 @@ ai_ADS_data$City <- gsub("Sann Francisco", "San Francisco", ai_ADS_data$City)
 
 ai_data_US <- ai_ADAS_data %>% 
   select(Make, Model, City, State) %>% 
-  filter(Make != "Tesla") %>% 
   group_by(Make) %>% 
-  summarize(total_crashes = n())
+  summarize(total_crashes = n()) %>% 
+  arrange(-total_crashes)
 
-plot <- ggplot(data = ai_data_US) +
-  geom_col(mapping = aes(x = Make, y = total_crashes), fill = "red") +
-  labs(title = "Number of car crashes per maker (ADAS)", 
-       subtitle = "",
-       caption = "",
+plot <- ggplot(data = ai_data_US, aes(reorder(Make, -total_crashes), total_crashes)) +
+  geom_col(fill = "red") +
+  geom_text(aes(label = total_crashes), vjust = -1, nudge_y = 10, color = "black") +
+  labs(title = "Number of Car Crashes Per Manufacturer (ADAS)", 
+       subtitle = "Data comes from NHTSA",
+       caption = "Source: https://www.nhtsa.gov/laws-regulations/standing-general-order-crash-reporting",
        alt = "",
-       x = "Maker", 
+       x = "Manufacturer", 
        y = "Total Crashes") +
+  coord_flip() +
   theme(
+    plot.margin = margin(1, 1, 1, 1, "cm"),
     axis.text.x = element_text(size = 6.5),
     axis.text.y = element_text(size = 16),
     axis.title.x = element_text(size = 20),
-    axis.title.y = element_text(size = 20),
-    # plot.background = element_blank(), # remove gray background
-    # panel.grid.major = element_blank(), # remove major grid lines
-    # panel.grid.minor = element_blank(), # remove minor grid lines
-    # panel.border = element_blank() # remove border around plot
+    axis.title.y = element_text(size = 20)
     )
-ggplotly(plot)
+crashes_per_manufacturer <- ggplotly(plot, tooltip = "none")
 
 # Plot 2
 
 # API usage: Geocodio for geocoding locations to lat, long based on city, state
-# Sys.setenv("GEOCODIO_API_KEY" = "e3666a46434a3ea3e414e24436f30ef46300fe4")
-# Sys.setenv("GEOCODIO_API_KEY" = "25133ea329996236632211643a66aee2a3a36a3") Jenna's key
-ADAS_crashes_per_location <- ai_ADAS_data %>%
-  select(Make, City, State) %>% 
-  filter(State != "UNK") %>% 
-  geocode(city = City, state = State, lat = latitude , long = longitude, method = "geocodio") %>% 
-  group_by(City, State, latitude, longitude) %>% 
-  summarize(total_crashes = n(), .groups = "keep")
+# NOTE: Both dataframes created below are stored in the data directory as recreating
+# them takes time as Geocodio has to find the latitude and longitude each time
 
-ADS_crashes_per_location <- ai_ADS_data %>% 
-  select(Make, City, State) %>% 
-  filter(State != "UNK") %>% 
-  geocode(city = City, state = State, lat = latitude, long = longitude, method = "geocodio") %>% 
-  group_by(City, State, latitude, longitude) %>%
-  summarize(total_crashes = n(), .groups = "keep")
+# ADAS_crashes_per_location <- ai_ADAS_data %>%
+#   select(Make, City, State) %>% 
+#   filter(State != "UNK") %>% 
+#   geocode(city = City, state = State, lat = latitude , long = longitude, method = "geocodio") %>% 
+#   group_by(City, State, latitude, longitude) %>% 
+#   summarize(total_crashes = n(), .groups = "keep")
+# 
+# ADS_crashes_per_location <- ai_ADS_data %>% 
+#   select(Make, City, State) %>% 
+#   filter(State != "UNK") %>% 
+#   geocode(city = City, state = State, lat = latitude, long = longitude, method = "geocodio") %>% 
+#   group_by(City, State, latitude, longitude) %>%
+#   summarize(total_crashes = n(), .groups = "keep")
+
+ADAS_crashes_per_location <- read.csv("../data/ADAS_crashes_per_location.csv")
+ADS_crashes_per_location <- read.csv("../data/ADS_crashes_per_location.csv")
 
 # Load a shapefile of U.S. states using ggplot's `map_data()` function
 state_shape <- map_data("state")
@@ -103,7 +106,7 @@ map_plot_ADAS <- map_plot_ADAS +
     legend.position = "top"
   )
 
-ggplotly(map_plot_ADAS, tooltip = c("label", "label2", "label3"))
+ADAS_crash_location_map <- ggplotly(map_plot_ADAS, tooltip = c("label", "label2", "label3"))
 
 map_plot_ADS <- ggplot(state_shape) +
   geom_polygon(
@@ -141,26 +144,4 @@ map_plot_ADS <- map_plot_ADS +
     legend.position = "top"
   )
 
-ggplotly(map_plot_ADS, tooltip = c("label", "label2", "label3"))
-
-# Plot 3 (Heatmap of ADAS car crashes per state)
-
-# ADAS_per_state <- ADAS_crashes_per_location %>% 
-#   group_by(State) %>% 
-#   summarize(total_crashes = n()) %>% 
-#   geocode(state = State, lat = latitude, long = longitude, method = "geocodio") 
-# 
-# state_shape <- map_data("state")
-# map_plot_ADAS_per_state <- ggplot(state_shape) +
-#   geom_polygon(
-#     mapping = aes(x = long, y = lat, group = group),
-#     color = "white", # show state outlines
-#     size = .1 # thinly stroked
-#   ) + 
-#   geom_polygon (
-#     data = ADAS_per_state,
-#     mapping = aes(x = longitude, y = latitude, fill = total_crashes)
-#   ) +
-#   coord_map()
-# 
-# ggplotly(map_plot_ADAS_per_state)
+ADS_crash_location_map <- ggplotly(map_plot_ADS, tooltip = c("label", "label2", "label3"))
