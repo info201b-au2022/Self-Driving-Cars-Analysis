@@ -50,7 +50,7 @@ The purpose of this map is to observe where and how many crashes are happening i
 
 ---
 
-### Chart 2:
+### Chart 2: Types of Car Crahses in ADAS vs ADS
 ```{r fig.height = 8, fig.width = 8, fig.align = "center", echo = FALSE}
 adas_type_pie
 ads_type_pie
