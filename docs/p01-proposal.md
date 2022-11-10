@@ -40,8 +40,8 @@
 <hr>
 
 **Research Questions**:
-  1. _**Does one company / vehicle model tend to have more crashes reported in certain types of weather?**_
-      - Important for those that live in places where certain types of weather is common. It might influence consumers to avoid buying these cars for the AI if it doesn’t perform well in some weather. This question is motivated by interest in seeing how AI functions in differing weather conditions.
+  1. _**What type of roadway tends to have the most crashes? What about the roadway surface (dry, ice, etc)? **_
+      - Might influence consumers to avoid buying these cars for the AI if it seems to perform worse in certain types of roadways. Important for those that live in places where certain types of weather is common that affects the roadway surface. This question is motivated by interest in seeing how AI functions in differing types of roadways and roadway surface conditions. 
 
   2. _**What type of car crash is most prevalent in ADS vs ADAS? What might be the cause of this?**_
       - Comparing technologies is essential to visualize how they will perform in the future, as well as predict how consumers will react to them. For example, should consumers feel safer moving to ADS (the prototype “no-hands” AI driving experience) or will ADAS (the current one in the market) remain the most popular? As such, we are motivated to find out whether ADS are safe enough to hype up, or if ADAS will remain to stay.  
