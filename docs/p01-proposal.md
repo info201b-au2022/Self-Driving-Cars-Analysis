@@ -78,6 +78,8 @@ d) The dataset came from Kaggle, which then was sourced to an official NHTSA web
 <hr>
 
 **Limitations**: Understanding the data requires understanding the requirements of the General Order. There are specific definitions of terms - ADS, ADAS, crash, and subject vehicles. The reporting requirements for ADS and ADAS are different. ADS reports the crash when its usage happened at any time within 30 seconds and results in property damage or injury, while ADAS reports the crash when a vulnerable road user uses the technology at any time within 30 seconds and results in airbag deployment, fatality, or transportation to hospital. There can be multiple reports for a single crash when the entity requires submitting multiple reports or more than one entity is responsible for reporting. Data may be incomplete or unverified, since there is no responsibility for the entity to update the initial incident report that lacks unaware circumstances. The report summary data are not normalized, since incident rates regarding number of manufacturers or operators are limited to normalize. 
+
+To address these limitations, we will create a summarized dataset of columns that are found in both ADS and ADAS datasets and are necessary (since there are 122 columns). We will also clean each dataset by making sure there are only columns that have the most complete data in them and not have any unknown values.
 <hr>
 
 **Acknowledgements**: We would like to acknowledge Kaggle user Michael Bryant and the NHTSA for their work on this public dataset. This project would not be possible without their contributions.
@@ -96,6 +98,8 @@ _Deep learning for object detection and scene perception in self-driving cars: S
   - “Standing General Order on Crash Reporting.” _NHTSA_, 2022, https://www.nhtsa.gov/laws-regulations/standing-general-order-crash-reporting. 
   - “Summary Report: Standing General Order on Crash Reporting for ... - NHTSA.” _Summary Report: Standing General Order on Crash Reporting for Automated Driving Systems_, June 2022, https://www.nhtsa.gov/sites/nhtsa.gov/files/2022-06/ADS-SGO-Report-June-2022.pdf. 
 <hr>
+
+**Appendix A: Questions**: Is it ok if we have more than 3 graphs in our report?
 
 
 
