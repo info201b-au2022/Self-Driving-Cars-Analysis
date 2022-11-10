@@ -1,7 +1,5 @@
 library (tidyverse)
 library(dplyr)
-#install.packages("ggplot2")
-library(ggplot2)
 
 # Research Question 2: 
 # What type of car crash is most prevalent in ADS vs ADAS? What might be the cause of this?
@@ -33,9 +31,9 @@ ads_temp <- result(ads)
 # from temp files
 # create Other type and filter out rows grouped into Other 
 adas_other <- adas_temp %>%
-  add_row(Crash.With = "Truck", count = 29 + 28) %>%
+  add_row(Crash.With = "Truck", count = sum(adas_temp$count[8:9]))%>%
   arrange(desc(count)) %>%
-  add_row(Crash.With = "Other", count = 41 + 9 + 8 + 5+ 2 +1) %>%
+  add_row(Crash.With = "Other", count = sum(adas_temp$count[11:15])) %>%
   arrange(desc(count)) %>%
   slice(1:12) %>%
   filter(Crash.With != "Other, see Narrative") %>%
@@ -43,7 +41,7 @@ adas_other <- adas_temp %>%
   filter(Crash.With != "Heavy Truck") 
 
 ads_other <- ads_temp %>%
-  add_row(Crash.With = "Other", count = (31 + 6 + 5 + 3 + 3 + 2+ 2 + 1)) %>%
+  add_row(Crash.With = "Other", count = sum(ads_temp$count[10:15])) %>%
   arrange(desc(count)) %>%
   slice(1:10) %>%
   filter(Crash.With != "Other, see Narrative")
@@ -69,17 +67,16 @@ ads_crash <- make_percentage(ads_other)
 library(plotrix)
 
 create_pie <- function(df, name) {
-  df_chart <- pie3D(df$percentage, labels = df$type, theta = 1.0, 
-                    explode = 0.15, labelcex = 0.8, height = 0.07,
+  df_chart <- pie3D(df$percentage, labels = paste0(df$type), theta = 1.0, 
+                    explode = 0.15, labelcex = 1, height = 0.07,
                     col=c("#C0392B","#8E44AD","#2471A3", "#5499C7","#16A085", "#58D68D", "#F4D03F", "#E67E22", "#F5B7B1"),
                     main = name)
   
   df_chart
 }
 
-adas_chart <- create_pie(adas_crash, "Type of ADAS Car Crashes")
-ads_chart <- create_pie(ads_crash, "Type of ADS Car Crashes")
+adas_type_pie <- create_pie(adas_crash, "Type of ADAS Car Crashes")
+ads_type_pie <- create_pie(ads_crash, "Type of ADS Car Crashes")
 
 
-## rowSums / colSums in specifc rows 
 
