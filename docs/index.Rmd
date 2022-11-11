@@ -24,6 +24,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 source("../source/chart1.R")
 source("../source/chart2.R")
+source("../source/chart3.R")
 source("../source/summary.R")
 ```
 
@@ -69,3 +70,9 @@ The pie chart illustrates what types of car crashes are most prevalent in ADAS a
 ---
 
 ### Chart 3:
+```{r fig.height = 8, fig.width = 10, fig.align = "center", echo = FALSE}
+ADAS_roadway_type
+ADS_roadway_type
+```
+The bar graph depicts which roadway types are most prevalent in the crashes of ADAS and ADS in the United States. It is seen that the most crashes for ADAS happens on the highway, while it is on the intersection for ADS. 
+---
