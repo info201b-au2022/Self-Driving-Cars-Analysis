@@ -36,6 +36,11 @@ A summary of the ADAS and ADS datasets are as follows: <br>
 - **Number of observations in ADS dataset**: `r summary_info$num_observations_ADS` <br>
 - **Company with most ADAS crashes**: `r summary_info$most_cars_ADAS$Make`; `r summary_info$most_cars_ADAS$total_crashes` crashes <br>
 - **Company with most ADS crashes**: `r summary_info$most_cars_ADS$Make`; `r summary_info$most_cars_ADS$total_crashes` crashes <br>
+- **Model with most ADAS crashes**: `r summary_info$most_model_crashes_ADAS$Model`;
+`r summary_info$most_model_crashes_ADAS$total_crashes` crashes <br>
+- **Model with most ADS crashes**: `r summary_info$most_model_crashes_ADS$Model`;
+`r summary_info$most_model_crashes_ADS$total_crashes` crashes
+
 
 ---
 
