@@ -20,7 +20,7 @@ summary_info$most_cars_ADAS <- ai_ADAS_data %>%
   arrange(-total_crashes) %>% 
   head(1)
 
-summary_info$most_cars_AD <- ai_ADAS_data %>% 
+summary_info$most_cars_ADS <- ai_ADS_data %>% 
   select(Make) %>% 
   group_by(Make) %>% 
   summarize(total_crashes = n()) %>% 
@@ -82,5 +82,17 @@ summary_info$most_state_ADS <- ai_ADS_data %>%
   head(1) %>% 
   pull(State)
   
-# What type of car crash is most prevalent in ADS vs ADAS? What might be the cause of this?
+# What top 5 car models (and thus maker) have the most ADAS and ADS crashes?
+
+summary_info$most_model_crashes_ADAS <- ai_ADAS_data %>% 
+  group_by(Make, Model) %>% 
+  summarize(total_crashes = n(), .groups = "keep") %>% 
+  arrange(-total_crashes) %>% 
+  head(1)
+
+summary_info$most_model_crashes_ADS <- ai_ADS_data %>% 
+  group_by(Make, Model) %>% 
+  summarize(total_crashes = n(), .groups = "keep") %>% 
+  arrange(-total_crashes) %>% 
+  head(1) 
                         
