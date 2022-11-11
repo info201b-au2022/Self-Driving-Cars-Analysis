@@ -1,36 +1,86 @@
 library("dplyr")
 
 ai_ADAS_data <- read.csv("../data/SGO-2021-01_Incident_Reports_ADAS.csv")
-View(ai_ADAS_data)
 ai_ADS_data <- read.csv("../data/SGO-2021-01_Incident_Reports_ADS.csv")
-View(ai_ADS_data)
 
-# Total counts
-num_ADAS <- nrow(ai_ADAS_data)
-num_ADS <- nrow(ai_ADS_data)
+summary_info <- list()
+
+# Count the number of observations in each dataset.
+
+summary_info$num_observations_ADAS <- nrow(ai_ADAS_data)
+summary_info$num_observations_ADS <- nrow(ai_ADS_data)
+
+# Which companies have the most reported car crashes for ADS and ADAS? 
+# If so, what were the most common causes for each crash?
+
+summary_info$most_cars_ADAS <- ai_ADAS_data %>% 
+  select(Make) %>% 
+  group_by(Make) %>% 
+  summarize(total_crashes = n()) %>% 
+  arrange(-total_crashes) %>% 
+  head(1)
+
+summary_info$most_cars_AD <- ai_ADAS_data %>% 
+  select(Make) %>% 
+  group_by(Make) %>% 
+  summarize(total_crashes = n()) %>% 
+  arrange(-total_crashes) %>% 
+  head(1)
+
+
 
 # What type of roadway tends to have the most crashes? What about the roadway surface (dry, ice, etc)?
-ai_ADAS_roadway_noUnknown <- ai_ADAS_data %>% 
+
+summary_info$most_roadway_ADAS <- ai_ADAS_data %>% 
   select(Roadway.Type) %>% 
-  filter(Roadway.Type != "Unknown")
-ai_ADAS_surface_noUnknown <- ai_ADAS_data %>%
+  filter(Roadway.Type != "Unknown") %>% 
+  group_by(Roadway.Type) %>% 
+  summarize(total_crashes = n()) %>% 
+  arrange(-total_crashes) %>% 
+  head(1) %>% 
+  pull(Roadway.Type)
+
+summary_info$most_roadway_ADS <- ai_ADS_data %>% 
+  group_by(Roadway.Type) %>% 
+  summarize(total_crashes = n()) %>% 
+  arrange(-total_crashes) %>% 
+  head(1) %>%
+  pull(Roadway.Type)
+
+summary_info$most_surface_ADAS <- ai_ADAS_data %>% 
   select(Roadway.Surface) %>% 
-  filter(Roadway.Surface != "Unknown")
+  filter(Roadway.Surface != "Unknown") %>% 
+  group_by(Roadway.Surface) %>% 
+  summarize(total_crashes = n()) %>% 
+  arrange(-total_crashes) %>% 
+  head(1) %>% 
+  pull(Roadway.Surface)
 
-most_roadway_ADAS <- names(which.max(table(ai_ADAS_roadway_noUnknown$Roadway.Type)))
-most_roadway_ADS <- names(which.max(table(ai_ADS_data$Roadway.Type)))
+summary_info$most_surface_ADS <- ai_ADS_data %>% 
+  group_by(Roadway.Surface) %>% 
+  summarize(total_crashes = n()) %>% 
+  arrange(-total_crashes) %>% 
+  head(1) %>%
+  pull(Roadway.Surface)
 
-most_surface_ADAS <- names(which.max(table(ai_ADAS_surface_noUnknown$Roadway.Surface)))
-most_surface_ADS <- names(which.max(table(ai_ADS_data$Roadway.Surface)))
+# What states have the most crashes? What kinds? 
+# What does this say about the spread of automated car technology in the United States? 
 
+summary_info$most_state_ADAS <- ai_ADAS_data %>% 
+  select(State) %>% 
+  group_by(State) %>% 
+  summarize(total_crashes = n()) %>% 
+  arrange(-total_crashes) %>% 
+  head(1) %>% 
+  pull(State)
+
+summary_info$most_state_ADS <- ai_ADS_data %>% 
+  select(State) %>% 
+  group_by(State) %>% 
+  summarize(total_crashes = n()) %>% 
+  arrange(-total_crashes) %>% 
+  head(1) %>% 
+  pull(State)
+  
 # What type of car crash is most prevalent in ADS vs ADAS? What might be the cause of this?
-
-
-# Which companies have the most reported car crashes for ADS and ADAS? If so, what were the most common causes for each crash?
-most_car_ADAS <- names(which.max(table(ai_ADAS_data$Make)))
-most_car_ADS <- names(which.max(table(ai_ADS_data$Make)))
-
-# What states have the most crashes? What kinds? What does this say about the spread of automated car technology in the United States? How does it compare with crashes occurred by non-self driving cars?
-most_state_ADAS <- names(which.max(table(ai_ADAS_data$State)))
-most_state_ADS <- names(which.max(table(ai_ADS_data$State)))
                         
