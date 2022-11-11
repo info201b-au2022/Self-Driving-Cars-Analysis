@@ -23,14 +23,19 @@ knitr::opts_chunk$set(echo = TRUE)
 # SOURCE FILES HERE PLEASE!
 
 source("../source/chart1.R")
-source(".../source/chart2.R")
+source("../source/chart2.R")
+source("../source/summary.R")
 ```
 
 ---
 
 ### Summary
 
-Value 1: Calculate the companies with the most ADS and ADAS crashes in `summary.R`
+A summary of the ADAS and ADS datasets are as follows: <br>
+- **Number of observations in ADAS dataset**: `r summary_info$num_observations_ADAS` <br>
+- **Number of observations in ADS dataset**: `r summary_info$num_observations_ADS` <br>
+- **Company with most ADAS crashes**: `r summary_info$most_cars_ADAS$Make`; `r summary_info$most_cars_ADAS$total_crashes` crashes <br>
+- **Company with most ADS crashes**: `r summary_info$most_cars_ADS$Make`; `r summary_info$most_cars_ADS$total_crashes` crashes <br>
 
 ---
 
