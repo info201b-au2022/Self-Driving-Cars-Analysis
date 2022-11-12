@@ -20,6 +20,7 @@ source("../source/chart1.R")
 source("../source/chart2.R")
 source("../source/chart3.R")
 source("../source/summary.R")
+source("../source/table.R")
 ```
 
 ---
@@ -40,6 +41,11 @@ A summary of the ADAS and ADS datasets are as follows: <br>
 ---
 
 ### Table
+```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
+ai_ADAS_surface
+ai_ADS_surface
+```
+These tables show ...
 
 ---
 
@@ -57,7 +63,6 @@ The purpose of these maps are to observe where and how many crashes are happenin
 adas_pie_chart
 ads_pie_chart
 ```
-
 The pie chart illustrates what types of car crashes are most prevalent in ADAS and ADS in the United States. Most cases in ADAS are with fixed objects and vehicles whereas the top 3 in ADS are passenger cars, SUVs, and pickup trucks. This makes sense since most of these vehicles are driven on busy roads where other vehicles are common. 
 
 ---
