@@ -38,13 +38,15 @@ adas_other <- adas_temp %>%
   slice(1:12) %>%
   filter(Crash.With != "Other, see Narrative") %>%
   filter(Crash.With != "Pickup Truck") %>%
-  filter(Crash.With != "Heavy Truck") 
+  filter(Crash.With != "Heavy Truck")  %>% 
+  filter(Crash.With != "Unknown")
 
 ads_other <- ads_temp %>%
   add_row(Crash.With = "Other", count = sum(ads_temp$count[10:15])) %>%
   arrange(desc(count)) %>%
   slice(1:10) %>%
-  filter(Crash.With != "Other, see Narrative")
+  filter(Crash.With != "Other, see Narrative") %>% 
+  filter(Crash.With != "Unknown")
 
 # input : dataframe with Other type
 # return : dataframe with type and percentages 
@@ -61,22 +63,35 @@ make_percentage <- function(df) {
 adas_crash <- make_percentage(adas_other) 
 ads_crash <- make_percentage(ads_other)
 
+# Create pie chart
+library("ggplot2")
 
-# create pie chart
-#install.packages("plotrix")
-library(plotrix)
-
-create_pie <- function(df, name) {
-  df_chart <- pie3D(df$percentage, labels = paste0(df$type), theta = 1.0, 
-                    explode = 0.15, labelcex = 1, height = 0.07,
-                    col=c("#C0392B","#8E44AD","#2471A3", "#5499C7","#16A085", "#58D68D", "#F4D03F", "#E67E22", "#F5B7B1"),
-                    main = name)
+adas_pie_chart <- ggplot(data = adas_crash, aes(x = "", y = percentage, fill = type)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  geom_text(aes(label = paste0(percentage * 100, "%")), position = position_stack(vjust = 0.5)) + 
+  theme_void() +
+  labs(
+    x = NULL,
+    y = NULL,
+    fill = "Type of crash",
+    title = "Types of Crashes for ADAS vehicles",
+    caption = "Source: NHTSA"
+  )
+                          
   
-  df_chart
-}
 
-adas_type_pie <- create_pie(adas_crash, "Type of ADAS Car Crashes")
-ads_type_pie <- create_pie(ads_crash, "Type of ADS Car Crashes")
-
+ads_pie_chart <- ggplot(data = ads_crash, aes(x = "", y = percentage, fill = type)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  geom_text(aes(label = paste0(percentage * 100, "%")), position = position_stack(vjust = 0.5)) + 
+  theme_void() +
+  labs(
+    x = NULL,
+    y = NULL,
+    fill = "Type of crash",
+    title = "Types of Crashes for ADS vehicles",
+    caption = "Source: NHTSA"
+  )
 
 

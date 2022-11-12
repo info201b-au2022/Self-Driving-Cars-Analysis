@@ -56,6 +56,7 @@ ADAS_roadway_type <- ggplot(ADAS_roadway_crashes, aes(x = crashes, y = Roadway.T
   geom_text(aes(label = crashes)) +
   labs(
     x = "Number of crashes", y = "Types of roadways",
+    fill = "Roadway Type",
     title = "Amount of Crashes per Roadway Type"
   )
 
@@ -65,6 +66,7 @@ ADS_roadway_type <- ggplot(ADS_roadway_crashes, aes(x = crashes, y = Roadway.Typ
   geom_text(aes(label = crashes)) +
   labs(
     x = "Number of crashes", y = "Types of Roadways",
+    fill = "Roadway Type",
     title = "Amount of Crashes per Roadway Type"
   )
 
@@ -74,6 +76,7 @@ ADAS_roadway_surface_crashes <- ggplot(ADAS_roadway_surface, aes(x = crashes, y 
   geom_text(aes(label = crashes)) +
   labs(
     x = "Number of crashes", y = "Types of Roadway Surfaces",
+    fill = "Roadway Surface",
     title = "Amount of crashes per Roadway Surface"
   )
 
@@ -84,5 +87,6 @@ ADS_roadway_surface_crashes <- ggplot(ADS_roadway_crashes, aes(x = crashes, y = 
   geom_text(aes(label = crashes)) +
   labs(
     x = "Number of crashes", y = "Types of Roadway Surfaces",
+    fill = "Roadway Surface",
     title = "Amount of Crashes per Roadway Surface"
   )
