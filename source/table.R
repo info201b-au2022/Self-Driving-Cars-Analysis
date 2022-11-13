@@ -49,7 +49,7 @@ ai_ADS_roadway <- ai_ADS_data %>%
   filter(Roadway.Type != "Unknown") %>%
   group_by(Roadway.Type) %>% 
   summarize(total_crashes = n()) %>% 
-  rename("Total Crashes" = total_crashes)
+  rename("Total Crashes" = total_crashes) %>% 
 
 # Table 5: Number of ADAS crashes per roadway surface
 
@@ -59,7 +59,8 @@ ai_ADAS_surface <- ai_ADAS_data %>%
   filter(Roadway.Surface != "Unknown") %>%
   group_by(Roadway.Surface) %>% 
   summarize(total_crashes = n()) %>% 
-  rename("Total Crashes" = total_crashes)
+  rename("Total Crashes" = total_crashes) %>% 
+  data.frame()
 
 # Table 6: Number of ADS crashes per roadway surface
 
@@ -69,7 +70,8 @@ ai_ADS_surface <- ai_ADS_data %>%
   filter(Roadway.Surface != "Unknown") %>%
   group_by(Roadway.Surface) %>% 
   summarize(total_crashes = n()) %>% 
-  rename("Total Crashes" = total_crashes)
+  rename("Total Crashes" = total_crashes) %>% 
+  data.frame()
 
 # Table 7: Number of ADAS crashes per state
 

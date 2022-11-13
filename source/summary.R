@@ -7,7 +7,7 @@ summary_info <- list()
 
 # Count the number of observations in each dataset.
 
-summary_info$num_observations_ADAS <- nrow(ai_ADAS_data)
+summary_info$num_observations_ADAS <- format(nrow(ai_ADAS_data), big.mark = ",")
 summary_info$num_observations_ADS <- nrow(ai_ADS_data)
 
 # Which companies have the most reported car crashes for ADS and ADAS? 
@@ -29,7 +29,8 @@ summary_info$most_cars_ADS <- ai_ADS_data %>%
 
 
 
-# What type of roadway tends to have the most crashes? What about the roadway surface (dry, ice, etc)?
+# What type of roadway tends to have the most crashes? 
+# What about the roadway surface (dry, ice, etc)?
 
 summary_info$most_roadway_ADAS <- ai_ADAS_data %>% 
   select(Roadway.Type) %>% 
@@ -64,7 +65,8 @@ summary_info$most_surface_ADS <- ai_ADS_data %>%
   pull(Roadway.Surface)
 
 # What states have the most crashes? What kinds? 
-# What does this say about the spread of automated car technology in the United States? 
+# What does this say about the spread of automated car technology 
+# in the United States? 
 
 summary_info$most_state_ADAS <- ai_ADAS_data %>% 
   select(State) %>% 
@@ -93,6 +95,5 @@ summary_info$most_model_crashes_ADAS <- ai_ADAS_data %>%
 summary_info$most_model_crashes_ADS <- ai_ADS_data %>% 
   group_by(Make, Model) %>% 
   summarize(total_crashes = n(), .groups = "keep") %>% 
-  arrange(-total_crashes) %>% 
-  head(1) 
-                        
+  arrange(-total_crashes) %>%
+  head(1)

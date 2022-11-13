@@ -27,16 +27,7 @@ source("../source/table.R")
 
 ### Summary
 
-A summary of the ADAS and ADS datasets are as follows: <br>
-- **Number of observations in ADAS dataset**: `r summary_info$num_observations_ADAS` <br>
-- **Number of observations in ADS dataset**: `r summary_info$num_observations_ADS` <br>
-- **Company with most ADAS crashes**: `r summary_info$most_cars_ADAS$Make`; `r summary_info$most_cars_ADAS$total_crashes` crashes <br>
-- **Company with most ADS crashes**: `r summary_info$most_cars_ADS$Make`; `r summary_info$most_cars_ADS$total_crashes` crashes <br>
-- **Model with most ADAS crashes**: `r summary_info$most_model_crashes_ADAS$Model`;
-`r summary_info$most_model_crashes_ADAS$total_crashes` crashes <br>
-- **Model with most ADS crashes**: `r summary_info$most_model_crashes_ADS$Model`;
-`r summary_info$most_model_crashes_ADS$total_crashes` crashes
-
+The ADAS dataset has a total of **`r summary_info$num_observations_ADAS`** observations. The company with the most ADAS crashes is **`r summary_info$most_cars_ADAS$Make`** with **`r summary_info$most_cars_ADAS$total_crashes`** crashes. The model with the most ADAS crashes is the **`r summary_info$most_model_crashes_ADAS$Make`** **`r summary_info$most_model_crashes_ADAS$Model`**. For the ADS dataset, it has a total of **`r summary_info$num_observations_ADS`** observations. The company with the most ADS crashes is **`r summary_info$most_cars_ADS$Make`** with **`r summary_info$most_cars_ADAS$total_crashes`** crashes. The model with the most ADS crashes is the **`r summary_info$most_model_crashes_ADS$Make`** **`r summary_info$most_model_crashes_ADS$Model`** with **`r summary_info$most_model_crashes_ADS$total_crashes`** crashes.
 
 ---
 
@@ -49,27 +40,50 @@ These tables show ...
 
 ---
 
-### Charts 1: ADAS / ADS Crashes Per Location
-```{r crash_comparison, fig.height = 5, fig.width = 10, fig.align = "center", echo = FALSE}
+### Charts 1: ADAS / ADS Crashes Per Location in the United States
+```{r crash_comparison_ADAS, fig.height = 5, fig.width = 10, fig.align = "center", echo = FALSE}
 ADAS_crash_location_map
+```
+
+_**Figure 1**_: Distribution of where ADAS car crashes have happened around the United States.
+
+```{r crash_comparison_ADS, fig.height = 5, fig.width = 10, fig.align = "center", echo = FALSE}
 ADS_crash_location_map
 ```
-The purpose of these maps are to observe where and how many crashes are happening in locations around the United States. Most crashes seem to happen in California based on the large and dark red circles found there (particularly in Los Angeles), but also in Texas and New York. The results might be linked to higher populations and manufacturers in these states. **You can hover over the map to get information on the city and total number of crashes there**
+
+_**Figure 2**_: Distribution of where ADS car crashes have happened around the United States.
+
+The purpose of these maps are to observe where and how many crashes are happening in locations around the United States. Most crashes seem to happen in California based on the large and dark red circles found there (particularly in Los Angeles), but also in Texas and New York. The results might be linked to higher populations and manufacturers in these states. **Hover over the points on the map to get information on the city and total number of crashes there**.
 
 ---
 
 ### Chart 2: Types of Car Crashes in ADAS vs ADS
 ```{r pie, fig.height = 8, fig.width = 8, fig.align = "center", echo = FALSE}
 adas_pie_chart
+```
+_**Figure 3**_: Pie chart show the proportions of differing crash types for ADAS vehicles.
+
+```{r pie_2, fig.height = 8, fig.width = 8, fig.align = "center", echo = FALSE}
 ads_pie_chart
 ```
+_**Figure 4**_: Pie chart show the proportions of differing crash types for ADS vehicles.
+
+
 The pie chart illustrates what types of car crashes are most prevalent in ADAS and ADS in the United States. Most cases in ADAS are with fixed objects and vehicles whereas the top 3 in ADS are passenger cars, SUVs, and pickup trucks. This makes sense since most of these vehicles are driven on busy roads where other vehicles are common. 
 
 ---
 
-### Chart 3:
+### Chart 3: Number of ADAS / ADS Crashes Per Roadway Type
 ```{r fig.height = 8, fig.width = 10, fig.align = "center", echo = FALSE}
 ADAS_roadway_type
+```
+
+_**Figure 5**_: Bar graph showing the amount of roadway types that ADAS vehicles were driving on when a crash occurred.
+
+```{r fig.height = 8, fig.width = 10, fig.align = "center", echo = FALSE}
 ADS_roadway_type
 ```
-The bar graph depicts which roadway types are most prevalent in the crashes of ADAS and ADS in the United States. It is seen that the most crashes for ADAS happens on the highway, while it is on the intersection for ADS. The ADAS roadway types might be the result that drivers like to turn on ADAS most likely when they are on highways. For ADS, it might mean that these cars struggle to identify red lights.
+
+_**Figure 6**_: Bar graph showing the amount of roadway types that ADS vehicles were driving on when a crash occurred.
+
+These bar graphs depict which roadway types are most prevalent in the crashes of ADAS and ADS in the United States. It is seen that the most crashes for ADAS happens on the highway, while it is on the intersection for ADS. The ADAS roadway types might be the result that drivers like to turn on ADAS most likely when they are on highways. For ADS, it might mean that these cars struggle to identify red lights.
