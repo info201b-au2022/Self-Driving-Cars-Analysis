@@ -7,7 +7,7 @@ summary_info <- list()
 
 # Count the number of observations in each dataset.
 
-summary_info$num_observations_ADAS <- nrow(ai_ADAS_data)
+summary_info$num_observations_ADAS <- format(nrow(ai_ADAS_data), big.mark = ",")
 summary_info$num_observations_ADS <- nrow(ai_ADS_data)
 
 # Which companies have the most reported car crashes for ADS and ADAS? 

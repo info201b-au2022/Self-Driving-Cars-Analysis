@@ -103,6 +103,7 @@ map_plot_ADAS <- map_plot_ADAS +
     panel.grid.major = element_blank(), # remove major grid lines
     panel.grid.minor = element_blank(), # remove minor grid lines
     panel.border = element_blank(), # remove border around plot
+    panel.background = element_blank(),
     legend.position = "top"
   )
 
@@ -141,6 +142,7 @@ map_plot_ADS <- map_plot_ADS +
     panel.grid.major = element_blank(), # remove major grid lines
     panel.grid.minor = element_blank(), # remove minor grid lines
     panel.border = element_blank(), # remove border around plot
+    panel.background = element_blank(),
     legend.position = "top"
   )
 
