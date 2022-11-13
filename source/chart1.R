@@ -3,8 +3,10 @@ library("plotly")
 library("tidyverse")
 library("tidygeocoder")
 
-ai_ADAS_data <- read.csv("../data/SGO-2021-01_Incident_Reports_ADAS.csv") # ADAS (L1)
-ai_ADS_data <- read.csv("../data/SGO-2021-01_Incident_Reports_ADS.csv") # ADAS (L1)
+# ADAS
+ai_ADAS_data <- read.csv("../data/SGO-2021-01_Incident_Reports_ADAS.csv") 
+# ADS
+ai_ADS_data <- read.csv("../data/SGO-2021-01_Incident_Reports_ADS.csv") 
 
 ai_ADAS_data$Make <- gsub("Acrua", "Acura", ai_ADAS_data$Make)
 ai_ADAS_data$Make <- gsub("Mercedes-Benz", "Mercedes", ai_ADAS_data$Make)
