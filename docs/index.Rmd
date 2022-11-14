@@ -34,17 +34,17 @@ The ADAS dataset has a total of **`r summary_info$num_observations_ADAS`** obser
 ### Tables
 
 ```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
-ai_ADAS_surface
+kable(ai_ADAS_surface)
 ```
-**Table 1**: ADAS vehicle crashes by roadway surface type 
+**Table 1**: ADAS vehicle crashes by roadway surface type
 
 ```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
 
-ai_ADS_surface
+kable(ai_ADS_surface)
 ```
 **Table 2**: ADS vehicle crashes by roadway surface type
 
-These tables were included because roadway surface has a big impact on the way cars drive, so it is important to evaluate how ai cars handle certain roadway surfaces. These tables show that the dry roadway surface has the most ADAS and ADS vehicle crashes. So, the roadway surface type does not affect the performance of the ai vehicles. This means that the cause of the crash must be something else like the roadway type or brand of car. 
+These tables were included because roadway surface has a big impact on the way cars drive, so it is important to evaluate how ai cars handle certain roadway surfaces. These tables show that the dry roadway surface has the most ADAS and ADS vehicle crashes. So, the roadway surface type does not affect the performance of the ai vehicles. This means that the cause of the crash must be something else like the roadway type or brand of car.
 
 ---
 
@@ -77,7 +77,7 @@ ads_pie_chart
 _**Figure 4**_: Pie chart show the proportions of differing crash types for ADS vehicles.
 
 
-The pie chart illustrates what types of car crashes are most prevalent in ADAS and ADS in the United States. Most cases in ADAS are with fixed objects and vehicles whereas the top 3 in ADS are passenger cars, SUVs, and pickup trucks. This makes sense since most of these vehicles are driven on busy roads where other vehicles are common. 
+The pie chart illustrates what types of car crashes are most prevalent in ADAS and ADS in the United States. Most cases in ADAS are with fixed objects and vehicles whereas the top 3 in ADS are passenger cars, SUVs, and pickup trucks. This makes sense since most of these vehicles are driven on busy roads where other vehicles are common.
 
 ---
 
