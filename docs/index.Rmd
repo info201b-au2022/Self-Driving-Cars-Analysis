@@ -10,10 +10,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r, echo = FALSE, include = FALSE}
-# Example 1: Note relative path, which can be read: Up one
-# directory(..), down into source (/source), and then "source" an R file
-# (data_access.R)
-
 # SOURCE FILES HERE PLEASE!
 
 source("../source/chart1.R")
