@@ -34,13 +34,12 @@ The ADAS dataset has a total of **`r summary_info$num_observations_ADAS`** obser
 ### Tables
 
 ```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
-knitr::kable(ai_ADAS_surface)
+knitr::kable(ai_ADAS_surface, format = "pipe")
 ```
 **Table 1**: ADAS vehicle crashes by roadway surface type
 
 ```{r fig.height = 8, fig.width= 8, fig.align = "center", echo = FALSE}
-
-knitr::kable(ai_ADS_surface)
+knitr::kable(ai_ADS_surface, format = "pipe")
 ```
 **Table 2**: ADS vehicle crashes by roadway surface type
 
