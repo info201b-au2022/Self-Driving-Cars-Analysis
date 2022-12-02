@@ -4,9 +4,9 @@ library("tidyverse")
 library("tidygeocoder")
 
 # ADAS
-ai_ADAS_data <- read.csv("../data/SGO-2021-01_Incident_Reports_ADAS.csv") 
+ai_ADAS_data <- read.csv("www/SGO-2021-01_Incident_Reports_ADAS.csv") 
 # ADS
-ai_ADS_data <- read.csv("../data/SGO-2021-01_Incident_Reports_ADS.csv") 
+ai_ADS_data <- read.csv("www/SGO-2021-01_Incident_Reports_ADS.csv") 
 
 ai_ADAS_data$Make <- gsub("Acrua", "Acura", ai_ADAS_data$Make)
 ai_ADAS_data$Make <- gsub("Mercedes-Benz", "Mercedes", ai_ADAS_data$Make)
@@ -19,33 +19,6 @@ ai_ADS_data$Make <- gsub("NAVYA", "Navya", ai_ADS_data$Make)
 ai_ADS_data$Make <- gsub("INTERNATIONAL", "International", ai_ADS_data$Make)
 ai_ADS_data$Make <- gsub("FREIGHTLINER", "Freightliner", ai_ADS_data$Make)
 ai_ADS_data$City <- gsub("Sann Francisco", "San Francisco", ai_ADS_data$City)
-
-ai_data_US <- ai_ADAS_data %>% 
-  select(Make, Model, City, State) %>% 
-  group_by(Make) %>% 
-  summarize(total_crashes = n()) %>% 
-  arrange(-total_crashes)
-
-plot <- ggplot(data = ai_data_US, aes(reorder(Make, -total_crashes), total_crashes)) +
-  geom_col(fill = "red") +
-  geom_text(aes(label = total_crashes), vjust = -1, nudge_y = 10, color = "black") +
-  labs(title = "Number of Car Crashes Per Manufacturer (ADAS)", 
-       subtitle = "Data comes from NHTSA",
-       caption = "Source: https://www.nhtsa.gov/laws-regulations/standing-general-order-crash-reporting",
-       alt = "",
-       x = "Manufacturer", 
-       y = "Total Crashes") +
-  coord_flip() +
-  theme(
-    plot.margin = margin(1, 1, 1, 1, "cm"),
-    axis.text.x = element_text(size = 6.5),
-    axis.text.y = element_text(size = 16),
-    axis.title.x = element_text(size = 20),
-    axis.title.y = element_text(size = 20)
-    )
-crashes_per_manufacturer <- ggplotly(plot, tooltip = "none")
-
-# Plot 2
 
 # API usage: Geocodio for geocoding locations to lat, long based on city, state
 # NOTE: Both dataframes created below are stored in the data directory as recreating
@@ -65,8 +38,15 @@ crashes_per_manufacturer <- ggplotly(plot, tooltip = "none")
 #   group_by(City, State, latitude, longitude) %>%
 #   summarize(total_crashes = n(), .groups = "keep")
 
-ADAS_crashes_per_location <- read.csv("../data/ADAS_crashes_per_location.csv")
-ADS_crashes_per_location <- read.csv("../data/ADS_crashes_per_location.csv")
+### Combine these dataframes together for Shiny usage
+# ADAS_crashes_per_location <- read.csv("www/ADAS_crashes_per_location.csv")
+# ADS_crashes_per_location <- read.csv("www/ADS_crashes_per_location.csv")
+
+# colnames(ADAS_crashes_per_location)[6] <- "ADAS"
+# colnames(ADS_crashes_per_location)[6] <- "ADS"
+
+# crashes_per_location <- bind_rows(ADAS_crashes_per_location, ADS_crashes_per_location)
+# write.csv(crashes_per_location, file = "crashes_per_location.csv")
 
 # Load a shapefile of U.S. states using ggplot's `map_data()` function
 state_shape <- map_data("state")
