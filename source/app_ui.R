@@ -1,7 +1,6 @@
 library(shiny)
 
 ui <- navbarPage(
-  
   title = strong("PROJECT NAME"),
   tabPanel(
     title = strong("Introduction"),
