@@ -129,3 +129,4 @@ map_plot_ADS <- map_plot_ADS +
   )
 
 ADS_crash_location_map <- ggplotly(map_plot_ADS, tooltip = c("label", "label2", "label3"))
+

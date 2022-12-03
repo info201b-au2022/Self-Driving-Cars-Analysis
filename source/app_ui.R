@@ -21,6 +21,7 @@ ui <- navbarPage(
     title = "Summary"
   ),
   tabPanel(
-    title = "Report"
+    title = "Report",
+    htmlOutput(outputId = "report_table")
   )
 )

@@ -26,7 +26,10 @@ server <- function(input, output) {
   ### CHART 1 CODE ###
 
   output$chart_1_output <- renderPlotly({
-    crashes_per_location <- read.csv("www/crashes_per_location.csv")
+    
+    # Read data and remove rows where ADAS or ADS is NA (depends on what is graphed)
+    crashes_per_location <- read.csv("www/crashes_per_location.csv") %>% 
+      drop_na(input$chart_1_type_input)
     
     # Load a shapefile of U.S. states using ggplot's `map_data()` function
     state_shape <- map_data("state")
@@ -43,14 +46,14 @@ server <- function(input, output) {
         mapping = aes(
           x = longitude, 
           y = latitude, 
-          label = City, 
-          label2 = State, 
-          label3 = .data[[input$chart_1_type_input]], 
+          label = .data$City, 
+          label2 = .data$State, 
+          label3 = .data[[input$chart_1_type_input]],
           color = .data[[input$chart_1_type_input]],
-          size = .data[[input$chart_1_type_input]]
-      )) +
+          size = .data[[input$chart_1_type_input]])
+      ) +
       scale_color_gradient2(low = "#fff7ec", mid = "#ef6548", high = "#7f0000") +
-      scale_size_continuous(limits=c(1, 34), breaks=seq(1, 34, by=5)) +
+      scale_size_continuous() +
       coord_map() + # use a map-based coordinate system  
       labs(title = "Distribution of Car Crash Locations in the US", color = "Total Crashes") +
       theme(
@@ -76,5 +79,68 @@ server <- function(input, output) {
   ### SUMMARY CODE ###
   
   ### REPORT CODE ####
-
+  output$report_table <- renderUI({
+    HTML("
+    <style>
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      table {
+        background-color: #DBE1F1;
+        width: 1000px;
+      }
+      th, td {
+        padding: 10px;
+      }
+    </style>
+    <table>
+      <tr>
+        <th>Element</th>
+        <th>Brief Description</th>
+      </tr>
+      <tr>
+        <td>Code Name</td>
+        <td>car-crash-2021</td>
+      </tr>
+      <tr>
+        <td>Project Title</td>
+        <td>Self-Driving Cars: How Safe Are They?</td>
+      </tr>
+      <tr>
+        <td>Authors</td>
+        <td>Trevor Tang (tangtr@uw.edu), 
+        Jenna Moon-Earle (jmoone@uw.edu), Sukyung Tae (sukyung@uw.edu), 
+        Yeji Kim (yk84@uw.edu)</td>
+      </tr>
+      <tr>
+        <td>Affiliation</td>
+        <td>INFO-201: Technical Foundations of Informatics - 
+        The Information School - University of Washington</td>
+      </tr>
+      <tr>
+        <td>Date</td>
+        <td>Autumn 2022</td>
+      </tr>
+      <tr>
+        <td>Abstract</td>
+        <td>Our project will investigate certain crashes involving vehicles 
+        equipped with <i>automatic driving systems</i> (<b>ADS</b>) / <i>automatic driving assisted systems</i> (<b>ADAS</b>) 
+        so that consumers can obtain timely and transparent notifications of crashing incidents 
+        associated with these vehicles from manufacturers and operators. 
+        The purpose of our datasets is to provide information for the development 
+        of new technologies and policies to enhance the safety of these technologies, 
+        and our main question is to figure out the better option between self-driving vehicles 
+        and non self-driving vehicles by examining the number of accidents, key factors that 
+        affect the crashes (weather, geography, etc.), and effectiveness of new technologies and policies. 
+        This question is important because it helps consumers to be informed whether 
+        it's effective to buy ADS/ADAS cars or to avoid it if it doesn't perform well in the places they live. 
+        We will analyze the cars with their technologies to visualize how they will perform so that consumers 
+        can make better decisions. We recognize that the limitations of the data are crucial for accurate 
+        interpretation and analysis, since the crash data did not include the capabilities depending on the brands 
+        and manufacturers. To address this concern, we plan to keep in mind the variation in data recording and 
+        collect the data by each vehicle’s companies as much as we can.</td>
+      </tr>
+    </table>")
+  })
 }
