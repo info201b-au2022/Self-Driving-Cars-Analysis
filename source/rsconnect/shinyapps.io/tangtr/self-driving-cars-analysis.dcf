@@ -1,0 +1,13 @@
+name: self-driving-cars-analysis
+title: self-driving-cars-analysis
+username:
+account: tangtr
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 7801757
+bundleId: 6585253
+url: https://tangtr.shinyapps.io/Self-Driving-Cars-Analysis/
+when: 1670048710.46529
+lastSyncTime: 1670048710.46529
+asMultiple: FALSE
+asStatic: FALSE

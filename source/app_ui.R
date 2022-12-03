@@ -1,4 +1,5 @@
 library(shiny)
+library(plotly)
 
 ui <- navbarPage(
   title = strong("PROJECT NAME"),
