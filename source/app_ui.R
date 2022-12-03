@@ -1,5 +1,6 @@
 library(shiny)
 library(plotly)
+library(markdown)
 
 ui <- navbarPage(
   title = strong("PROJECT NAME"),
@@ -23,6 +24,6 @@ ui <- navbarPage(
   ),
   tabPanel(
     title = "Report",
-    htmlOutput(outputId = "report_table")
+    includeMarkdown("www/docs/p01-proposal.md")
   )
 )

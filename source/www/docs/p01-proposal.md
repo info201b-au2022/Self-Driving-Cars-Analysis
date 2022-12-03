@@ -40,7 +40,7 @@
 <hr>
 
 **Research Questions**:
-  1. _**What type of roadway tends to have the most crashes? What about the roadway surface (dry, ice, etc)?**_
+  1. _**What type of roadway tends to have the most crashes? What about the roadway surface (dry, ice, etc)? **_
       - Might influence consumers to avoid buying these cars for the AI if it seems to perform worse in certain types of roadways. Important for those that live in places where certain types of weather is common that affects the roadway surface. This question is motivated by interest in seeing how AI functions in differing types of roadways and roadway surface conditions. 
 
   2. _**What type of car crash is most prevalent in ADS vs ADAS? What might be the cause of this?**_
@@ -57,7 +57,7 @@
 **The Dataset**:
 - The dataset comes with columns that can help us solve our research questions. For example, each row represents a self-report of a crash, with each column listing all possible information about the crash as given by the reporter (and some automatically generated). The datasets are split into ADS and ADAS, so it is easy to compare them both since they are separate with the same columns. One other dataset is included which is for reports that didn't list if the car had ADS or ADAS capabilities (but did have one of them). For more information about each feature, the NHTSA defined all 122 columns in this document found [here](https://static.nhtsa.gov/odi/ffdd/sgo-2021-01/SGO-2021-01_Data_Element_Definitions.pdf)
 
-![Table of our datasets](www/docs/img/table.jpg)
+![Table of our datasets](img/table.jpg)
 
 - **Citations**:
   - Bryant, Michael. “Automated Driving Crashes.” _Kaggle_, 22 Oct. 2022, https://www.kaggle.com/datasets/michaelbryantds/automated-driving-crashes?select=SGO-2021-01_Incident_Reports_ADAS.csv. 
@@ -94,5 +94,3 @@ _Deep learning for object detection and scene perception in self-driving cars: S
   - “Standing General Order on Crash Reporting.” _NHTSA_, 2022, https://www.nhtsa.gov/laws-regulations/standing-general-order-crash-reporting. 
   - “Summary Report: Standing General Order on Crash Reporting for ... - NHTSA.” _Summary Report: Standing General Order on Crash Reporting for Automated Driving Systems_, June 2022, https://www.nhtsa.gov/sites/nhtsa.gov/files/2022-06/ADS-SGO-Report-June-2022.pdf. 
 <hr>
-
-
