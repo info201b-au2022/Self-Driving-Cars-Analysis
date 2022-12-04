@@ -24,29 +24,29 @@ ai_ADS_data$City <- gsub("Sann Francisco", "San Francisco", ai_ADS_data$City)
 # NOTE: Both dataframes created below are stored in the data directory as recreating
 # them takes time as Geocodio has to find the latitude and longitude each time
 
-# ADAS_crashes_per_location <- ai_ADAS_data %>%
-#   select(Make, City, State) %>% 
-#   filter(State != "UNK") %>% 
-#   geocode(city = City, state = State, lat = latitude , long = longitude, method = "geocodio") %>% 
-#   group_by(City, State, latitude, longitude) %>% 
-#   summarize(total_crashes = n(), .groups = "keep")
-# 
-# ADS_crashes_per_location <- ai_ADS_data %>% 
-#   select(Make, City, State) %>% 
-#   filter(State != "UNK") %>% 
-#   geocode(city = City, state = State, lat = latitude, long = longitude, method = "geocodio") %>% 
-#   group_by(City, State, latitude, longitude) %>%
-#   summarize(total_crashes = n(), .groups = "keep")
+ADAS_crashes_per_location <- ai_ADAS_data %>%
+  select(Make, City, State) %>%
+  filter(State != "UNK") %>%
+  geocode(city = City, state = State, lat = latitude , long = longitude, method = "geocodio") %>%
+  group_by(City, State, latitude, longitude) %>%
+  summarize(total_crashes = n(), .groups = "keep")
+
+ADS_crashes_per_location <- ai_ADS_data %>%
+  select(Make, City, State) %>%
+  filter(State != "UNK") %>%
+  geocode(city = City, state = State, lat = latitude, long = longitude, method = "geocodio") %>%
+  group_by(City, State, latitude, longitude) %>%
+  summarize(total_crashes = n(), .groups = "keep")
 
 ### Combine these dataframes together for Shiny usage
-# ADAS_crashes_per_location <- read.csv("www/ADAS_crashes_per_location.csv")
-# ADS_crashes_per_location <- read.csv("www/ADS_crashes_per_location.csv")
+ADAS_crashes_per_location <- read.csv("www/ADAS_crashes_per_location.csv")
+ADS_crashes_per_location <- read.csv("www/ADS_crashes_per_location.csv")
 
-# colnames(ADAS_crashes_per_location)[6] <- "ADAS"
-# colnames(ADS_crashes_per_location)[6] <- "ADS"
+colnames(ADAS_crashes_per_location)[6] <- "ADAS"
+colnames(ADS_crashes_per_location)[6] <- "ADS"
 
-# crashes_per_location <- bind_rows(ADAS_crashes_per_location, ADS_crashes_per_location)
-# write.csv(crashes_per_location, file = "crashes_per_location.csv")
+crashes_per_location <- bind_rows(ADAS_crashes_per_location, ADS_crashes_per_location)
+write.csv(crashes_per_location, file = "crashes_per_location.csv")
 
 # Load a shapefile of U.S. states using ggplot's `map_data()` function
 state_shape <- map_data("state")
