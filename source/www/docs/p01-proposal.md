@@ -40,7 +40,7 @@
 <hr>
 
 **Research Questions**:
-  1. _**What type of roadway tends to have the most crashes? What about the roadway surface (dry, ice, etc)?**_
+  1. _**What type of roadway tends to have the most crashes?**_
       - Might influence consumers to avoid buying these cars for the AI if it seems to perform worse in certain types of roadways. Important for those that live in places where certain types of weather is common that affects the roadway surface. This question is motivated by interest in seeing how AI functions in differing types of roadways and roadway surface conditions. 
 
   2. _**What type of car crash is most prevalent in ADS vs ADAS? What might be the cause of this?**_
@@ -49,8 +49,8 @@
   3. _**Which companies have the most reported car crashes for ADS and ADAS? If so, what were the most common causes for each crash?**_
       - This question is important for investors, consumers, and even the suppliers of the technologies as they should know whether the company they are supporting has effective means of preventing car crashes. However, it is also critical for the engineers of each company to understand what part of their AI technology is most flawed, so they can find solutions to it. This question is motivated by an analysis of which companies are leading in the AI driving industry, but we must consider factors such as the number of models in production, the economies of scale of each company, and the level of knowledge of AI driving technologies.
 
-  4. _**What states have the most crashes? What kinds? What does this say about the spread of automated car technology in the United States? How does it compare with crashes occurred by non-self driving cars?**_ 
-     - This question is important to help consumers make a right decision by informing them a correct data and information as mention in the data feminism. Moreover, the states that have the most crashes can develop their policies about self-driving vehicles and systems for the safety so that they reduce the number of accidents. Looking at differing crashes in each state might give insight into weather or terrain which these cars are having accidents in. As such, a motivation to this question is how can self-driving cars adapt to their environments, and are they suitable for every state or should there be limits?
+  4. _**What states have the most crashes? What does this say about the spread of automated car technology in the United States?**_ 
+     - This question is important to help consumers make a right decision by informing them a correct data and information as mentioned in Data Feminism. Moreover, the states that have the most crashes can develop their policies about self-driving vehicles and systems for the safety so that they reduce the number of accidents. Looking at differing crashes in each state might give insight into weather or terrain which these cars are having accidents in. As such, a motivation to this question is how can self-driving cars adapt to their environments, and are they suitable for every state or should there be limits?
 
 <hr>
 
@@ -80,9 +80,27 @@ To address these limitations, we will create a summarized dataset of columns tha
 
 **Findings**:
 
+1. _**What type of roadway tends to have the most crashes? What type of roadway surfaces (dry, wet, ice, etc.) tend to have more crashes?**_
+
+This differed for both ADS and ADAS. For ADS, the most amount of crashes happened on highways / freeways (469) with no close secondary roadway types, while for ADAS it was intersection (197) followed closely by streets (173). For the roadway surface types, most happen on dry surfaces for both ADS and ADAS, so weather is potentially not a factor that leads to these crashes. Thus, it can be attributed that AI technology is more to blame than weather for crashes. 
+
+2. _**What type of car crash is most prevalent in ADS vs ADAS? What might be the cause of this?**_
+
+For ADAS vehicles, the most common type of crash was attributed with various fixed objects not attributed to telephone poles or trees followed closely by passenger cars. Since most ADAS crashes happened on highways / freeways, it is possible that these vehicles might have crashed into the side walls or exit barriers (found near off-ramps) at high speeds. For ADS vehicles, the most prevalent type of crash was with other passenger cars. This makes sense since most of these crashes have happened on streets / intersections where cars can come out of nowhere meaning the AI has little time to react. 
+
+3. _**Which companies have the most reported car crashes for ADS and ADAS? If so, what were the most common causes for each crash?**_
+
+The company with the most ADAS crashes was Tesla with 875 crashes. Since ADAS is commercially available, and Tesla is the leading AI driving software company in the consumer market, it makes sense that most commercial crashes are with them. For ADS, the company with the most crashes was Jaguar with 188 crashes. This was surprising, mainly because we did not know that Jaguar had experimented with AI technology, nor that they were the leaders in crashes. We thought this number would also be lead by Tesla. The common causes for both crashes were quite similar as they happened on mainly dry roads, but on different road types. We can assume that Tesla's crashes happened most on roadways / intersections, while Jaguar's crashes happened most on highways / freeways.
+
+1. _**What states have the most crashes? What does this say about the spread of automated car technology in the United States?**_ 
+
+The states with the most crashes for both ADS and ADAS happened in California, but in differing cities. For ADS, it was in San Francisco (265) while for ADAS it was in Los Angeles (34). However, there is a higher density of crashes for ADAS that have happened on the East Coast. It is not clear why this trend is prevalent, it might be that the East Coast has more people, a higher interest in AI cars, or simply that the East Coast driving experience is worse than the rest of America. However, the high amount of points for ADAS car crashes spread around the United States shows that AI car technology is definitely becoming more popular, and we might be seeing a growth in the number of AI cars that appear on American roads. 
+
 <hr>
 
 **Discussion**:
+
+1. The reason most ADS might happen on highways / freeways is because ADS is not commercially available right now, and freeways are more simple to test AI driving on since streets have many complexities such as stop signs, lights, and pedestrians. ADAS, on the other hand, is commercially available, so it is possible that the reason why most crashes are not highway related is because driver's have to worry about more things on the streets and intersections compared to freeways.
 
 <hr>
 
