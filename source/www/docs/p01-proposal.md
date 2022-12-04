@@ -40,7 +40,7 @@
 <hr>
 
 **Research Questions**:
-  1. _**What type of roadway tends to have the most crashes? What about the roadway surface (dry, ice, etc)? **_
+  1. _**What type of roadway tends to have the most crashes? What about the roadway surface (dry, ice, etc)?**_
       - Might influence consumers to avoid buying these cars for the AI if it seems to perform worse in certain types of roadways. Important for those that live in places where certain types of weather is common that affects the roadway surface. This question is motivated by interest in seeing how AI functions in differing types of roadways and roadway surface conditions. 
 
   2. _**What type of car crash is most prevalent in ADS vs ADAS? What might be the cause of this?**_
@@ -76,6 +76,18 @@ d) The dataset came from Kaggle, which then was sourced to an official NHTSA web
 **Limitations**: Understanding the data requires understanding the requirements of the General Order. There are specific definitions of terms - ADS, ADAS, crash, and subject vehicles. The reporting requirements for ADS and ADAS are different. ADS reports the crash when its usage happened at any time within 30 seconds and results in property damage or injury, while ADAS reports the crash when a vulnerable road user uses the technology at any time within 30 seconds and results in airbag deployment, fatality, or transportation to hospital. There can be multiple reports for a single crash when the entity requires submitting multiple reports or more than one entity is responsible for reporting. Data may be incomplete or unverified, since there is no responsibility for the entity to update the initial incident report that lacks unaware circumstances. The report summary data are not normalized, since incident rates regarding number of manufacturers or operators are limited to normalize. 
 
 To address these limitations, we will create a summarized dataset of columns that are found in both ADS and ADAS datasets and are necessary (since there are 122 columns). We will also clean each dataset by making sure there are only columns that have the most complete data in them and not have any unknown values.
+<hr>
+
+**Findings**:
+
+<hr>
+
+**Discussion**:
+
+<hr>
+
+**Conclusion**:
+
 <hr>
 
 **Acknowledgements**: We would like to acknowledge Kaggle user Michael Bryant and the NHTSA for their work on this public dataset. This project would not be possible without their contributions.
