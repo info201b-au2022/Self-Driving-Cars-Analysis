@@ -88,3 +88,9 @@ ADS_roadway_surface_crashes <- ggplot(ADS_roadway_crashes, aes(x = crashes, y = 
     x = "Number of crashes", y = "Types of Roadway Surfaces",
     title = "Amount of Crashes per Roadway Surface"
   )
+
+ADS_roadway_crashes <- ADS_roadway_crashes %>% 
+  rename("ADS" = "crashes")
+
+
+roadway_crashes <- bind_rows(ADAS_roadway_crashes, ADS_roadway_crashes)
