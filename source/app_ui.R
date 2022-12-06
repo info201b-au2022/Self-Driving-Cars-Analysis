@@ -57,7 +57,8 @@ ui <- navbarPage(
   
   # CHART 3 PAGE
   tabPanel(
-    title = strong("Chart 3")
+    title = strong("Chart 3"),
+    selectInput("Type", label = "Select ADS or ADAS", choices = c("ADAS", "ADS"))
   ),
   
   # SUMMARY PAGE
