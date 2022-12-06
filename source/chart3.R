@@ -25,7 +25,8 @@ ADAS_roadway_crashes <- ADAS %>%
 # amount of crashes per roadway type; ADS
 ADS_roadway_crashes <- ADS %>%
   select(Roadway.Type) %>%
-  filter(Roadway.Type != "Unknown") %>%
+  filter(Roadway.Type != "Unknown",
+         Roadway.Type != "") %>%
   group_by(Roadway.Type) %>%
   summarize(
     crashes = n()
@@ -42,8 +43,9 @@ ADAS_roadway_surface <- ADAS %>%
 
 # amount of crashes per roadway surface; ADS
 ADS_roadway_surface <- ADS %>% 
+  filter(Roadway.Surface != "Unknown",
+         Roadway.Surface != "") %>% 
   select(Roadway.Surface) %>% 
-  filter(Roadway.Surface != "Unknown") %>% 
   group_by(Roadway.Surface) %>% 
   summarize(
     crashes = n()
