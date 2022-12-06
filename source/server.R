@@ -4,30 +4,6 @@ library(plotly)
 library(maps)
 library(mapproj)
 
-# Read in the data
-# ADAS
-ai_ADAS_data <- read.csv("www/SGO-2021-01_Incident_Reports_ADAS.csv") 
-# ADS
-ai_ADS_data <- read.csv("www/SGO-2021-01_Incident_Reports_ADS.csv") 
-
-# Rename some rows to avoid duplicates / increase readability in graphs 
-ai_ADAS_data$Make <- gsub("Acrua", "Acura", ai_ADAS_data$Make)
-ai_ADAS_data$Make <- gsub("Mercedes-Benz", "Mercedes", ai_ADAS_data$Make)
-ai_ADAS_data$Make <- gsub("HYUNDAI", "Hyundai", ai_ADAS_data$Make)
-
-ai_ADS_data$Make <- gsub("LExus", "Lexus", ai_ADS_data$Make)
-ai_ADS_data$Make <- gsub("Kenworth Motor Truck Co", "Kenworth", ai_ADS_data$Make)
-ai_ADS_data$Make <- gsub("Ligier Group", "Ligier", ai_ADS_data$Make)
-ai_ADS_data$Make <- gsub("NAVYA", "Navya", ai_ADS_data$Make)
-ai_ADS_data$Make <- gsub("INTERNATIONAL", "International", ai_ADS_data$Make)
-ai_ADS_data$Make <- gsub("FREIGHTLINER", "Freightliner", ai_ADS_data$Make)
-ai_ADS_data$City <- gsub("Sann Francisco", "San Francisco", ai_ADS_data$City)
-
-# Make vector of manufacturer 
-adas_manufacturer <- unique(ai_ADAS_data$Make)
-ads_manufacturer <- unique(ai_ADS_data$Make)
-manufacturer <- unique(c(adas_manufacturer, ads_manufacturer))
-
 server <- function(input, output) {
   
   ### INTRODUCTION CODE ###
@@ -100,69 +76,73 @@ server <- function(input, output) {
   
   ### CHART 2 CODE ###
 
-  output$chart_2_adas <- renderPlotly({
+  output$chart_2 <- renderPlotly({
     
-    adas_crash_type <- ai_ADAS_data %>%
-      filter(Make == input$Manufacturer) %>%
-      select(Crash.With) %>%
-      group_by(Crash.With) %>%
+    adas_crashes_make <- ai_ADAS_data %>% 
+      select(Make, Crash.With) %>%
+      filter(Crash.With != "Other, see Narrative") %>% 
+      filter(Crash.With != "Unknown") %>% 
+      group_by(Make, Crash.With) %>%
       summarise(count = n()) %>%
       arrange(desc(count))
     
-    p_adas <- plot_ly(
-      data = adas_crash_type, 
-      labels = ~Crash.With, 
-      values = ~count, 
-      type = 'pie'
-    ) %>%
-      layout(title = paste0(input$Manufacturer, "'s ADAS Crash Type"))
-    
-  })
-  
-  output$chart_2_ads <- renderPlotly({
-    
-    ads_crash_type <- ai_ADS_data %>%
-      filter(Make == input$Manufacturer) %>%
-      select(Crash.With) %>%
-      group_by(Crash.With) %>%
+    ads_crashes_make <- ai_ADS_data %>%
+      select(Make, Crash.With) %>%
+      filter(Crash.With != "Other, see Narrative") %>% 
+      filter(Crash.With != "Unknown") %>% 
+      group_by(Make, Crash.With) %>%
       summarise(count = n()) %>%
       arrange(desc(count))
     
-    p_ads <- plot_ly(
-      data = ads_crash_type, 
+    # If we want to plot by a single manufacturer
+    if(input$Manufacturer != "Overall") {
+      adas_crashes_make <- ai_ADAS_data %>%
+        filter(Make == input$Manufacturer) %>%
+        select(Crash.With) %>%
+        group_by(Crash.With) %>%
+        summarise(count = n()) %>%
+        arrange(desc(count))
+      
+      ads_crash_make <- ai_ADS_data %>%
+        filter(Make == input$Manufacturer) %>%
+        select(Crash.With) %>%
+        group_by(Crash.With) %>%
+        summarise(count = n()) %>%
+        arrange(desc(count))
+    } 
+    
+    adas_crashes_make <- rename(adas_crashes_make, "ADAS" = "count")
+    ads_crashes_make <- rename(ads_crashes_make, "ADS" = "count")
+    crashes_per_type <- bind_rows(adas_crashes_make, ads_crashes_make)
+    crashes_per_type <- drop_na(crashes_per_type, input$chart_2_type)
+
+    pplot <- plot_ly(
+      data = crashes_per_type, 
       labels = ~Crash.With, 
-      values = ~count, 
+      values = ~.data[[input$chart_2_type]], 
       type = 'pie'
     ) %>%
-      layout(title = paste0(input$Manufacturer, "'s ADS Crash Type"))
-    
+      layout(title = paste0(input$Manufacturer, " ", input$chart_2_type, " Type of Crashes"))
   })
   
   ### CHART 3 CODE ###
   
   output$chart_3 <- renderPlotly({
     
-    ADAS_roadway_crashes <- ADAS %>%
+    ADAS_roadway_crashes <- ai_ADAS_data %>%
       select(Roadway.Type) %>%
       filter(Roadway.Type != "Unknown") %>%
       group_by(Roadway.Type) %>%
-      summarize(
-        crashes = n()
-      )
-    ADAS_roadway_crashes <- ADAS_roadway_crashes %>% 
-      rename("ADAS" = "crashes")
-    
-    ADS_roadway_crashes <- ADS %>%
+      summarize(crashes = n()) %>% 
+      rename("ADAS" = "crashes") 
+
+    ADS_roadway_crashes <- ai_ADS_data %>%
       select(Roadway.Type) %>%
       filter(Roadway.Type != "Unknown",
              Roadway.Type != "") %>%
       group_by(Roadway.Type) %>%
-      summarize(
-        crashes = n()
-      )
-    
-    ADS_roadway_crashes <- ADS_roadway_crashes %>% 
-      rename("ADS" = "crashes") 
+      summarize(crashes = n()) %>%  
+      rename("ADS" = "crashes")
     
     roadway_crashes <- bind_rows(ADAS_roadway_crashes, ADS_roadway_crashes) %>% 
       drop_na(input$Type)

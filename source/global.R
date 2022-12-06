@@ -20,5 +20,5 @@ ai_ADS_data$City <- gsub("Sann Francisco", "San Francisco", ai_ADS_data$City)
 # Make vector of manufacturer 
 adas_manufacturer <- unique(ai_ADAS_data$Make)
 ads_manufacturer <- unique(ai_ADS_data$Make)
-manufacturer <- unique(c(adas_manufacturer, ads_manufacturer))
-manufacturer <- append(manufacturer, "Overall")
+manufacturer <- c("Overall")
+manufacturer <- append(manufacturer, unique(c(adas_manufacturer, ads_manufacturer)))

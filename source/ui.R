@@ -39,9 +39,9 @@ ui <- navbarPage(
   tabPanel(
     title = strong("Chart 2"),
     
-    selectInput("Manufacturer", label="Select Manufacturer", choices = manufacturer),
-    plotlyOutput("chart_2_adas"),
-    plotlyOutput("chart_2_ads"),
+    selectInput("chart_2_type", label = "Choose ADAS / ADS", choices = c("ADAS", "ADS")),
+    selectInput("Manufacturer", label = "Select Manufacturer", choices = manufacturer),
+    plotlyOutput("chart_2"),
     p(span("Chart 2: The pie charts illustrate what types of car crash are most prevalent
            in ADAS and ADS in the United States. The user can select the manufacturer to see
            how the prevalence of crash types differ by their selection."), 
