@@ -59,7 +59,16 @@ ui <- navbarPage(
   tabPanel(
     title = strong("Chart 3"),
     selectInput("Type", label = "Select ADS or ADAS", choices = c("ADAS", "ADS")),
-    plotlyOutput(outputId = "chart_3")
+    plotlyOutput(outputId = "chart_3"),
+    hr(),
+    p("These bar graphs depict which roadway types are most prevalent 
+      in the crashes of ADAS and ADS in the United States. It is seen 
+      that the most crashes for ADAS happens on the highway, while it 
+      is on the intersection for ADS. The ADAS roadway types might be 
+      the result that drivers like to turn on ADAS most likely when 
+      they are on highways. For ADS, it might mean that these cars 
+      struggle to identify red lights. This is important because it shows
+      what manufactorers can do to better their products.")
   ),
   
   # SUMMARY PAGE
