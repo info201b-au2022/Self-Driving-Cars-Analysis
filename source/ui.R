@@ -58,7 +58,8 @@ ui <- navbarPage(
   # CHART 3 PAGE
   tabPanel(
     title = strong("Chart 3"),
-    selectInput("Type", label = "Select ADS or ADAS", choices = c("ADAS", "ADS"))
+    selectInput("Type", label = "Select ADS or ADAS", choices = c("ADAS", "ADS")),
+    plotlyOutput(outputId = "chart_3")
   ),
   
   # SUMMARY PAGE

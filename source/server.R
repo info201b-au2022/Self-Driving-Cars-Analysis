@@ -162,18 +162,22 @@ server <- function(input, output) {
       )
     
     ADS_roadway_crashes <- ADS_roadway_crashes %>% 
-      rename("ADS" = "crashes")
+      rename("ADS" = "crashes") 
     
-    roadway_crashes <- bind_rows(ADAS_roadway_crashes, ADS_roadway_crashes)
+    roadway_crashes <- bind_rows(ADAS_roadway_crashes, ADS_roadway_crashes) %>% 
+      drop_na(input$Type)
     
-    roadway_type_plot <- ggplot(roadway_crashes, aes(x = input$type, y = Roadway.Type)) +
-      geom_col(aes(fill = Roadway.Type)) +
-      geom_text(aes(label = input$type)) +
+    roadway_type_plot <- ggplot(roadway_crashes, aes(x = .data[[input$Type]], y = Roadway.Type)) +
+      geom_col(aes(fill = Roadway.Type,
+               label = .data$Roadway.Type,
+               label2 = .data[[input$Type]])) +
       labs(
         x = "Number of crashes", y = "Types of roadways",
-        title = "Amount of Crashes per Roadway Type"
-      )
-  
+        title = paste(input$Type, "Amount of Crashes per Roadway Type"),
+        fill = "Roadway Type"
+      ) 
+    roadway_plot <- ggplotly(roadway_type_plot, tooltip = c("label", "label2"))
+    return(roadway_plot)
   })
     
   
