@@ -23,6 +23,11 @@ ai_ADS_data$Make <- gsub("INTERNATIONAL", "International", ai_ADS_data$Make)
 ai_ADS_data$Make <- gsub("FREIGHTLINER", "Freightliner", ai_ADS_data$Make)
 ai_ADS_data$City <- gsub("Sann Francisco", "San Francisco", ai_ADS_data$City)
 
+# Make vector of manufacturer 
+adas_manufacturer <- unique(ai_ADAS_data$Make)
+ads_manufacturer <- unique(ai_ADS_data$Make)
+manufacturer <- unique(c(adas_manufacturer, ads_manufacturer))
+
 server <- function(input, output) {
   
   ### INTRODUCTION CODE ###
@@ -94,6 +99,44 @@ server <- function(input, output) {
   })
   
   ### CHART 2 CODE ###
+
+  output$chart_2_adas <- renderPlotly({
+    
+    adas_crash_type <- ai_ADAS_data %>%
+      filter(Make == input$Manufacturer) %>%
+      select(Crash.With) %>%
+      group_by(Crash.With) %>%
+      summarise(count = n()) %>%
+      arrange(desc(count))
+    
+    p_adas <- plot_ly(
+      data = adas_crash_type, 
+      labels = ~Crash.With, 
+      values = ~count, 
+      type = 'pie'
+    ) %>%
+      layout(title = paste0(input$Manufacturer, "'s ADAS Crash Type"))
+    
+  })
+  
+  output$chart_2_ads <- renderPlotly({
+    
+    ads_crash_type <- ai_ADS_data %>%
+      filter(Make == input$Manufacturer) %>%
+      select(Crash.With) %>%
+      group_by(Crash.With) %>%
+      summarise(count = n()) %>%
+      arrange(desc(count))
+    
+    p_ads <- plot_ly(
+      data = ads_crash_type, 
+      labels = ~Crash.With, 
+      values = ~count, 
+      type = 'pie'
+    ) %>%
+      layout(title = paste0(input$Manufacturer, "'s ADS Crash Type"))
+    
+  })
   
   ### CHART 3 CODE ###
   
