@@ -51,7 +51,7 @@ ui <- navbarPage(
            from AI authomobile technology in the United States. The data can further provide
            an insight to manufacturer of what are the potential car crashes based on ADAS or ADS
            and in which way the technology should develop to prevent them for customer's safety."),
-      style = "font-szie: 14px")
+      style = "font-size: 14px")
     
   ),
   
