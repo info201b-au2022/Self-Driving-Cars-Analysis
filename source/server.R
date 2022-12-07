@@ -160,7 +160,6 @@ server <- function(input, output) {
     return(roadway_plot)
   })
     
-  
   ### SUMMARY CODE ###
 
 }

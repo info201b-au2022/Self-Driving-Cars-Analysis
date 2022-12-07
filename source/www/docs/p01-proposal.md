@@ -92,7 +92,7 @@ For ADAS vehicles, the most common type of crash was attributed with various fix
 
 The company with the most ADAS crashes was Tesla with 875 crashes. Since ADAS is commercially available, and Tesla is the leading AI driving software company in the consumer market, it makes sense that most commercial crashes are with them. For ADS, the company with the most crashes was Jaguar with 188 crashes. This was surprising, mainly because we did not know that Jaguar had experimented with AI technology, nor that they were the leaders in crashes. We thought this number would also be lead by Tesla. The common causes for both crashes were quite similar as they happened on mainly dry roads, but on different road types. We can assume that Tesla's crashes happened most on roadways / intersections, while Jaguar's crashes happened most on highways / freeways.
 
-1. _**What states have the most crashes? What does this say about the spread of automated car technology in the United States?**_ 
+4. _**What states have the most crashes? What does this say about the spread of automated car technology in the United States?**_ 
 
 The states with the most crashes for both ADS and ADAS happened in California, but in differing cities. For ADS, it was in San Francisco (265) while for ADAS it was in Los Angeles (34). However, there is a higher density of crashes for ADAS that have happened on the East Coast. It is not clear why this trend is prevalent, it might be that the East Coast has more people, a higher interest in AI cars, or simply that the East Coast driving experience is worse than the rest of America. However, the high amount of points for ADAS car crashes spread around the United States shows that AI car technology is definitely becoming more popular, and we might be seeing a growth in the number of AI cars that appear on American roads. 
 
@@ -104,7 +104,7 @@ The states with the most crashes for both ADS and ADAS happened in California, b
 
 <hr>
 
-**Conclusion**:
+**Conclusion**: Vehicles with autonomous technology are capable of either entirely or partially self-driving based on their equipped systems: _automatic driving systems_ (**ADS**) or _automatic driving assisted systems_ (**ADAS**). Besides the convenience of self-driving, one important question to answer is the driver’s safety. Consumers should be aware of newly developed technologies and their effectiveness while operators enhance software and policies through thoroughly analyzed crash incidents. The type of roadway surfaces and the state of most crashes were common in ADS and ADAS. Both reported the highest on dry roadway surfaces in California. This implies that there might be factors other than the weather in AI driving and needs more investigation into the popularity of autonomous vehicles and roadway conditions in California. In contrast, the crashes between ADS and ADAS differ in types of roadways, crashes, and manufacturers. The most amount of ADS crashes was from the company of Jaguar on highways or freeways by colliding with other passenger cars, and ADAS crashes were frequent from Tesla on intersections or streets by hitting various fixed objects. This indicates how systems operate dissimilarly in the complexities of driving conditions and the software of manufacturers. Thus, future research should focus on factors of crashes to reduce the incidents that, importantly, are to ensure the safety of self-driving vehicle drivers. 
 
 <hr>
 
