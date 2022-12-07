@@ -6,8 +6,6 @@ library(mapproj)
 
 server <- function(input, output) {
   
-  ### INTRODUCTION CODE ###
-  
   ### CHART 1 CODE ###
   crashes_per_location <- read.csv("www/crashes_per_location.csv")
   
@@ -159,7 +157,4 @@ server <- function(input, output) {
     roadway_plot <- ggplotly(roadway_type_plot, tooltip = c("label", "label2"))
     return(roadway_plot)
   })
-    
-  ### SUMMARY CODE ###
-
 }
