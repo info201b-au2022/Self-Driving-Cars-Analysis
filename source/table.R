@@ -91,5 +91,3 @@ ai_ADS_state <- ai_ADS_data %>%
   group_by(State) %>% 
   summarize(total_crashes = n()) %>% 
   rename("Total Crashes" = total_crashes)
-
-
