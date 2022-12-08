@@ -5,9 +5,9 @@ account: tangtr
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 7801757
-bundleId: 6601365
+bundleId: 6608574
 url: https://tangtr.shinyapps.io/Self-Driving-Cars-Analysis/
-when: 1670366074.73754
-lastSyncTime: 1670366074.73756
+when: 1670471546.59442
+lastSyncTime: 1670471546.59443
 asMultiple: FALSE
 asStatic: FALSE

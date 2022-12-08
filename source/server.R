@@ -75,7 +75,7 @@ server <- function(input, output) {
   ### CHART 2 CODE ###
 
   output$chart_2 <- renderPlotly({
-    
+    # Wrangle the ADAS data to only include what we want
     adas_crashes_make <- ai_ADAS_data %>% 
       select(Make, Crash.With) %>%
       filter(Crash.With != "Other, see Narrative") %>% 
@@ -84,6 +84,7 @@ server <- function(input, output) {
       summarise(count = n()) %>%
       arrange(desc(count))
     
+    # Wrangle the ADS data to only include what we want
     ads_crashes_make <- ai_ADS_data %>%
       select(Make, Crash.With) %>%
       filter(Crash.With != "Other, see Narrative") %>% 
@@ -92,7 +93,7 @@ server <- function(input, output) {
       summarise(count = n()) %>%
       arrange(desc(count))
     
-    # If we want to plot by a single manufacturer
+    # If we want to plot by a single manufacturer and not see statistics for all manufacturers
     if(input$Manufacturer != "Overall") {
       adas_crashes_make <- ai_ADAS_data %>%
         filter(Make == input$Manufacturer) %>%
@@ -109,11 +110,15 @@ server <- function(input, output) {
         arrange(desc(count))
     } 
     
+    # Rename a column for labeling purposes
     adas_crashes_make <- rename(adas_crashes_make, "ADAS" = "count")
     ads_crashes_make <- rename(ads_crashes_make, "ADS" = "count")
+    
+    # Combine the datasets so we can filter it later when graphing 
     crashes_per_type <- bind_rows(adas_crashes_make, ads_crashes_make)
     crashes_per_type <- drop_na(crashes_per_type, input$chart_2_type)
 
+    # Plot the data
     pplot <- plot_ly(
       data = crashes_per_type, 
       labels = ~Crash.With, 
@@ -127,6 +132,7 @@ server <- function(input, output) {
   
   output$chart_3 <- renderPlotly({
     
+    # Wrangle the data to get what we want
     ADAS_roadway_crashes <- ai_ADAS_data %>%
       select(Roadway.Type) %>%
       filter(Roadway.Type != "Unknown") %>%
@@ -142,9 +148,11 @@ server <- function(input, output) {
       summarize(crashes = n()) %>%  
       rename("ADS" = "crashes")
     
+    # Bind the rows so we can filter later when graphing
     roadway_crashes <- bind_rows(ADAS_roadway_crashes, ADS_roadway_crashes) %>% 
       drop_na(input$Type)
     
+    # Create the bar graph
     roadway_type_plot <- ggplot(roadway_crashes, aes(x = .data[[input$Type]], y = Roadway.Type)) +
       geom_col(aes(fill = Roadway.Type,
                label = .data$Roadway.Type,
