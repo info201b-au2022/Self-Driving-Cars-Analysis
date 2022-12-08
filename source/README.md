@@ -5,4 +5,4 @@ these sub-directories:
 
 |Source Directories | Brief Description|
 |---------------| -----------------|
-|[charts](./charts) | Contains the data visualizations related to our dataset.
+|[www](./www) | Contains the media used in the shiny app
