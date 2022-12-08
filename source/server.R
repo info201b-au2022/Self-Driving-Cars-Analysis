@@ -102,7 +102,7 @@ server <- function(input, output) {
         summarise(count = n()) %>%
         arrange(desc(count))
       
-      ads_crash_make <- ai_ADS_data %>%
+      ads_crashes_make <- ai_ADS_data %>%
         filter(Make == input$Manufacturer) %>%
         select(Crash.With) %>%
         group_by(Crash.With) %>%
