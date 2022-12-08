@@ -126,14 +126,14 @@ server <- function(input, output) {
   ### CHART 3 CODE ###
   
   output$chart_3 <- renderPlotly({
-    
+    ## total amount of crashes per roadway type; ADAS
     ADAS_roadway_crashes <- ai_ADAS_data %>%
       select(Roadway.Type) %>%
       filter(Roadway.Type != "Unknown") %>%
       group_by(Roadway.Type) %>%
       summarize(crashes = n()) %>% 
       rename("ADAS" = "crashes") 
-
+    ## total amount of crashes per roadway type; ADS
     ADS_roadway_crashes <- ai_ADS_data %>%
       select(Roadway.Type) %>%
       filter(Roadway.Type != "Unknown",
@@ -141,10 +141,10 @@ server <- function(input, output) {
       group_by(Roadway.Type) %>%
       summarize(crashes = n()) %>%  
       rename("ADS" = "crashes")
-    
+    ## combine ADAS and ADS roadway crash data
     roadway_crashes <- bind_rows(ADAS_roadway_crashes, ADS_roadway_crashes) %>% 
       drop_na(input$Type)
-    
+    ## plot the roadway crash data
     roadway_type_plot <- ggplot(roadway_crashes, aes(x = .data[[input$Type]], y = Roadway.Type)) +
       geom_col(aes(fill = Roadway.Type,
                label = .data$Roadway.Type,
